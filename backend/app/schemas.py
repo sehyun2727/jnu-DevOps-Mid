@@ -9,6 +9,7 @@ class ScheduleBase(BaseModel):
     start_time: datetime
     end_time: Optional[datetime] = None
     is_completed: bool = False
+    category: str = "기타"
 
 
 class ScheduleCreate(ScheduleBase):
@@ -21,6 +22,7 @@ class ScheduleUpdate(BaseModel):
     start_time: Optional[datetime] = None
     end_time: Optional[datetime] = None
     is_completed: Optional[bool] = None
+    category: Optional[str] = None
 
 
 class ScheduleResponse(ScheduleBase):
@@ -28,5 +30,4 @@ class ScheduleResponse(ScheduleBase):
     created_at: datetime
     updated_at: datetime
 
-    class Config:
-        orm_mode = True
+    model_config = {"from_attributes": True}

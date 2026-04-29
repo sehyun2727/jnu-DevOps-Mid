@@ -12,5 +12,6 @@ class Schedule(Base):
     start_time = Column(DateTime, nullable=False)
     end_time = Column(DateTime, nullable=True)
     is_completed = Column(Boolean, default=False)
+    category = Column(String(20), default="기타")
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())

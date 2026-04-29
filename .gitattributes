@@ -1,0 +1,6 @@
+# 텍스트 파일은 LF로 통일 (Docker/Linux 환경 호환)
+* text=auto eol=lf
+
+# Windows 배치 파일만 예외
+*.bat text eol=crlf
+*.cmd text eol=crlf

@@ -14,7 +14,7 @@ def get_schedules(db: Session = Depends(get_db)):
 
 @router.post("/", response_model=schemas.ScheduleResponse, status_code=status.HTTP_201_CREATED)
 def create_schedule(schedule: schemas.ScheduleCreate, db: Session = Depends(get_db)):
-    db_schedule = models.Schedule(**schedule.dict())
+    db_schedule = models.Schedule(**schedule.model_dump())
     db.add(db_schedule)
     db.commit()
     db.refresh(db_schedule)
@@ -37,7 +37,7 @@ def update_schedule(
     if not schedule:
         raise HTTPException(status_code=404, detail="Schedule not found")
 
-    for field, value in schedule_update.dict(exclude_unset=True).items():
+    for field, value in schedule_update.model_dump(exclude_unset=True).items():
         setattr(schedule, field, value)
 
     db.commit()
