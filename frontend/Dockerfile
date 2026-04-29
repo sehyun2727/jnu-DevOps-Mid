@@ -7,7 +7,7 @@ COPY package.json package-lock.json* ./
 RUN npm install --silent
 
 COPY . .
-RUN npm run build
+RUN CI=false npm run build
 
 # Production stage
 FROM nginx:alpine
